@@ -3,31 +3,32 @@
 <body>
     <h1>Prueba de Métodos de Salida en JavaScript</h1>
     <p id="mytxt">Contenido previo</p>
-    <button type="button" onclick="btn1()">1. Ventana Alerta</button>
-    <button type="button" onclick="btn2()">2. Mensaje en Consola</button>
-    <button type="button" onclick="btn3()">3. Modificar DOM (innerHTML)</button>
-    <button type="button" onclick="btn4()">4. Document Write</button>
+    <button type="button" onclick="probarAlerta()">1. Ventana Alerta</button>
+    <button type="button" onclick="probarConsola()">2. Mensaje en Consola</button>
+    <button type="button" onclick="probarInnerHTML()">3. Modificar DOM (innerHTML)</button>
+    <button type="button" onclick="probarDocumentWrite()">4. Document Write</button>
 
     <script>
-        function btn1() 
+        function probarAlerta() 
         {
-            alert("Hola, mundo!");
+            window.alert("Esto es una alerta");
         }
 
-        function btn2() 
+        function probarConsola() 
         {
             console.log("¡Hola, mundo!");
+            alert("Mensaje enviado a la consola. Abre la consola del navegador para verlo.(f12)");
         }
 
-        function btn3() 
+        function probarInnerHTML() 
         {
-            var x = document.getElementById("mytxt");
-            x.style.cssText = "font-size: 35px; color: pink; font-weight: bold;";
+            document.getElementById("contenedor").innerHTML = "<strong>Texto inyectado con innerHTML</strong>";
         }
 
-        function btn4() 
+        function probarDocumentWrite() 
         {
-            document.write(" ");
+            document.write("<h3>Texto inyectado con document.write</h3>");
+
         }
     </script>
 </body>

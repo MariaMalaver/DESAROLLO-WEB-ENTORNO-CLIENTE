@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+    
+    <h1 id="titulo">Titulo original</h1>
+    <p id="parrafo">El contenido del párrafo es el original</p>
+
+    <button type="button" onclick="cambiarTexto()">Cambiar Texto</button>
+    <button type="button" onclick="cambiarEstilos()">Cambiar Estilos CSS</button>
+
+    <script>
+        function cambiarTexto() 
+        {
+            document.getElementById("titulo").textContent = "¡Titulo Modificado!";
+            document.getElementById("parrafo").textContent = "El contenido del párrafo ha sido modificado dinamicamente.";
+        }
+
+        function cambiarEstilos() 
+        {
+            document.getElementById("titulo").style.fontWeight = "bold";
+            document.getElementById("parrafo").style.color = "pink";
+        }
+    </script>
+</body>
+</html>

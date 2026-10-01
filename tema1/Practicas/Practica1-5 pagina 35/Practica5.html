@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mensajes de bienvenida</title>
+
+    <style>
+        button 
+        {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        #mensaje 
+        {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Mensajes de bienvenida</h1>
+
+    <button onclick="bienvenidaEspanol()"> Español </button>
+
+    <button onclick="bienvenidaIngles()"> English </button>
+
+    <button onclick="bienvenidaRuso()"> Ruso </button>
+
+    <p id="mensaje"></p>
+
+    <script>
+        function bienvenidaEspanol() 
+        {
+            let mensaje = document.getElementById("mensaje");
+
+            mensaje.innerHTML = "¡Bienvenido!";
+            mensaje.style.color = "red";
+        }
+
+        function bienvenidaIngles() 
+        {
+            let mensaje = document.getElementById("mensaje");
+
+            mensaje.innerHTML = "Welcome!";
+            mensaje.style.color = "blue";
+        }
+
+        function bienvenidaRuso() 
+        {
+            let mensaje = document.getElementById("mensaje");
+
+            mensaje.innerHTML = "Добро пожаловать!";
+            mensaje.style.color = "green";
+        }
+    </script>
+
+</body>
+</html>

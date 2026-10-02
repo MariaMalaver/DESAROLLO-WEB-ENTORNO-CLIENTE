@@ -5,18 +5,15 @@
     <title>Test de JavaScript</title>
 
     <style>
-        .pregunta 
-        {
+        .pregunta {
             margin-bottom: 25px;
         }
 
-        .pregunta p
-        {
+        .pregunta p {
             font-weight: bold;
         }
 
-        button 
-        {
+        button {
             margin-right: 10px;
             padding: 8px 15px;
             cursor: pointer;
@@ -32,56 +29,65 @@
         <p id="p1">1. JavaScript permite modificar el contenido de una página web.</p>
         <button onclick="responder('p1', true, true)">Verdadero</button>
         <button onclick="responder('p1', false, true)">Falso</button>
+        <button onclick="noSe('p1')">No sé</button>
     </div>
 
     <div class="pregunta">
         <p id="p2">2. console.log() sirve para mostrar mensajes en la consola.</p>
         <button onclick="responder('p2', true, true)">Verdadero</button>
         <button onclick="responder('p2', false, true)">Falso</button>
+        <button onclick="noSe('p2')">No sé</button>
     </div>
 
     <div class="pregunta">
         <p id="p3">3. innerHTML no permite cambiar el contenido de un elemento HTML.</p>
         <button onclick="responder('p3', true, true)">Verdadero</button>
         <button onclick="responder('p3', false, true)">Falso</button>
+        <button onclick="noSe('p3')">No sé</button>
     </div>
 
     <div class="pregunta">
         <p id="p4">4. JavaScript puede modificar atributos de elementos HTML.</p>
         <button onclick="responder('p4', true, true)">Verdadero</button>
         <button onclick="responder('p4', false, true)">Falso</button>
+        <button onclick="noSe('p4')">No sé</button>
     </div>
 
     <div class="pregunta">
         <p id="p5">5. window.alert() permite mostrar una ventana de alerta.</p>
         <button onclick="responder('p5', true, true)">Verdadero</button>
         <button onclick="responder('p5', false, true)">Falso</button>
+        <button onclick="noSe('p5')">No sé</button>
     </div>
 
     <div class="pregunta">
         <p id="p6">6. document.write() sirve únicamente para cambiar colores CSS.</p>
         <button onclick="responder('p6', true, true)">Verdadero</button>
         <button onclick="responder('p6', false, true)">Falso</button>
+        <button onclick="noSe('p6')">No sé</button>
     </div>
 
     <div class="pregunta">
         <p id="p7">7. JavaScript puede cambiar los estilos CSS de un elemento.</p>
         <button onclick="responder('p7', true, true)">Verdadero</button>
         <button onclick="responder('p7', false, true)">Falso</button>
+        <button onclick="noSe('p7')">No sé</button>
     </div>
 
     <script>
-        function responder(id, respuesta, correcta) 
-        {
+        function responder(id, respuesta, correcta) {
             let pregunta = document.getElementById(id);
 
-            if (respuesta === correcta) 
-            {
+            if (respuesta === correcta) {
                 pregunta.style.color = "green";
-            } else 
-            {
+            } else {
                 pregunta.style.color = "red";
             }
+        }
+
+        function noSe(id) {
+            let pregunta = document.getElementById(id);
+            pregunta.style.color = "#CC9900";
         }
     </script>
 

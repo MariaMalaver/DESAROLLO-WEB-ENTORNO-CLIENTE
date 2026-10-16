@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boletín de notas de la clase</title>
+  <style>
+    * 
+    { 
+      box-sizing: border-box; 
+    }
+    :root 
+    {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #202630;
+      background: #eef2f7;
+    }
+    body 
+    { 
+      margin: 0; padding: 38px 18px; 
+    }
+    .container 
+    { 
+      width: min(100%, 720px); margin: 0 auto; 
+    }
+    header 
+    { 
+      text-align: center; margin-bottom: 22px; 
+    }
+    h1 
+    { 
+      font-size: clamp(1.5rem, 4vw, 2rem); margin: 0 0 10px; 
+    }
+    nav 
+    { 
+      display: flex; justify-content: center; gap: 9px; font-size: .95rem; 
+    }
+    a 
+    { 
+      color: #244d9b; 
+    }
+    .panel 
+    {
+      background: #f8fafc;
+      border: 1px solid #cbd3dd;
+      border-radius: 9px;
+      padding: 18px;
+      margin: 16px 0;
+      box-shadow: 0 2px 6px #1b2c4410;
+    }
+    h2 
+    { 
+      font-size: 1.05rem; margin: 0 0 14px; font-weight: 600; 
+    }
+    .table-wrap 
+    { 
+      overflow-x: auto; 
+    }
+    table 
+    { 
+      border-collapse: collapse; width: 100%; font-size: .92rem; 
+    }
+    th, td 
+    { 
+      border: 1px solid #c3ccd6; padding: 9px 10px; text-align: center; 
+    }
+    thead th 
+    { 
+      background: #dce3ec; font-weight: 600; 
+    }
+    tbody td:first-child, thead th:first-child 
+    { 
+      text-align: left; 
+    }
+    td.grade 
+    { 
+      background: #c9e5d3; 
+    }
+    td.grade.low 
+    { 
+      background: #e8caca; 
+    }
+    td.grade.mid 
+    { 
+      background: #f1e5b7; 
+    }
+    td.average 
+    { 
+      font-weight: 600; 
+    }
+    .add-panel
+    { 
+      padding-bottom: 20px; 
+    }
+    form 
+    { 
+      display: flex; align-items: end; flex-wrap: wrap; gap: 10px; 
+    }
+    label 
+    {
+      display: flex; align-items: center; gap: 5px; font-size: .88rem; 
+    }
+    input 
+    {
+      width: 54px; min-width: 0; padding: 7px 6px;
+      border: 1px solid #b8c2cf; border-radius: 5px; background: white;
+      font: inherit;
+    }
+    .name-field input 
+    { 
+      width: 130px; 
+    }
+    button 
+    {
+      border: 0; border-radius: 5px; padding: 8px 12px;
+      color: white; background: #315fca; cursor: pointer; font: inherit;
+    }
+    button:hover 
+    { 
+      background: #244ca8; 
+    }
+    .secondary 
+    { 
+      margin-top: 12px; background: #6b7f9d; font-size: .86rem; 
+    }
+    .secondary:hover 
+    { 
+      background: #526781; 
+    }
+    #form-message 
+    { 
+      margin: 10px 0 0; font-size: .88rem; color: #245b39; 
+    }
+    #form-message:empty 
+    { display: none; 
+    }
+    @media (max-width: 520px) 
+    {
+      body 
+      { 
+        padding: 22px 10px; 
+      }
+      .panel 
+      { 
+        padding: 12px; 
+      }
+      th, td 
+      { 
+        padding: 8px 7px; font-size: .82rem; 
+      }
+      form 
+      { 
+        align-items: center; 
+      }
+      .name-field 
+      { 
+        width: 100%; 
+      }
+      .name-field input 
+      { 
+        flex: 1; 
+      }
+    }
+
+
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Boletín de notas de la clase</h1>
+      <nav aria-label="Navegación principal">
+        <a href="#notas">Notas</a><span>|</span><a href="#consultas">Consultas</a>
+      </nav>
+    </header>
+
+    <section class="panel" id="notas">
+      <h2>Notas por trimestre</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Alumno</th><th>1T</th><th>2T</th><th>3T</th><th>Media</th><th>Calificación</th></tr>
+          </thead>
+          <tbody id="grades-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel add-panel">
+      <h2>Añadir alumno</h2>
+      <form id="add-form">
+        <label class="name-field">Nombre: <input id="student-name" name="name" required maxlength="40"></label>
+        <label>1T: <input class="grade-input" id="grade1" type="number" min="0" max="10" step="1" required></label>
+        <label>2T: <input class="grade-input" id="grade2" type="number" min="0" max="10" step="1" required></label>
+        <label>3T: <input class="grade-input" id="grade3" type="number" min="0" max="10" step="1" required></label>
+        <button type="submit">Añadir</button>
+      </form>
+      <p id="form-message" aria-live="polite"></p>
+      <button type="button" class="secondary" id="reset-button">Volver a los datos iniciales</button>
+    </section>
+  </main>
+  <script>
+    const initialStudents = [
+      { name: "Ana", grades: [7, 8, 9] },
+      { name: "Luis", grades: [4, 5, 6] },
+      { name: "Marta", grades: [3, 4, 2] },
+      { name: "Pablo", grades: [9, 10, 9] },
+      { name: "Sara", grades: [5, 4, 6] }
+    ];
+
+    let students = structuredClone(initialStudents);
+
+    function getAverage(grades) {
+      return grades.reduce((sum, grade) => sum + grade, 0) / grades.length;
+    }
+
+    function getRating(average) {
+      if (average < 5) return "Insuficiente";
+      if (average < 6) return "Suficiente";
+      if (average < 7) return "Bien";
+      if (average < 9) return "Notable";
+      return "Sobresaliente";
+    }
+
+    function renderGrades() {
+      const tbody = document.querySelector("#grades-body");
+      tbody.replaceChildren();
+
+      students.forEach((student) => {
+        const row = document.createElement("tr");
+        const nameCell = document.createElement("td");
+        nameCell.textContent = student.name;
+        row.appendChild(nameCell);
+
+        student.grades.forEach((grade) => {
+          const cell = document.createElement("td");
+          cell.textContent = grade;
+          cell.className = "grade" + (grade < 5 ? " low" : grade < 6 ? " mid" : "");
+          row.appendChild(cell);
+        });
+
+        const average = getAverage(student.grades);
+        const averageCell = document.createElement("td");
+        averageCell.className = "average";
+        averageCell.textContent = average.toFixed(2);
+        row.appendChild(averageCell);
+
+        const ratingCell = document.createElement("td");
+        ratingCell.textContent = getRating(average);
+        row.appendChild(ratingCell);
+        tbody.appendChild(row);
+      });
+    }
+
+    document.querySelector("#add-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const name = document.querySelector("#student-name").value.trim();
+      const grades = [1, 2, 3].map((n) => Number(document.querySelector(`#grade${n}`).value));
+      const message = document.querySelector("#form-message");
+
+      if (!name) {
+        message.textContent = "Escribe el nombre del alumno.";
+        return;
+      }
+      if (grades.some((grade) => !Number.isFinite(grade) || grade < 0 || grade > 10)) {
+        message.textContent = "Las notas deben estar entre 0 y 10.";
+        return;
+      }
+      if (students.some((student) => student.name.toLocaleLowerCase() === name.toLocaleLowerCase())) {
+        message.textContent = "Ya existe un alumno con ese nombre.";
+        return;
+      }
+
+      students.push({ name, grades });
+      renderGrades();
+      event.target.reset();
+      message.textContent = `Se ha añadido a ${name}.`;
+    });
+
+    document.querySelector("#reset-button").addEventListener("click", () => {
+      students = structuredClone(initialStudents);
+      renderGrades();
+      document.querySelector("#add-form").reset();
+      document.querySelector("#form-message").textContent = "Se han restaurado los datos iniciales.";
+    });
+
+    renderGrades();
+
+  </script>
+</body>
+</html>

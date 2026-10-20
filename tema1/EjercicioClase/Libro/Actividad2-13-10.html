@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rombo hueco configurable</title>
+</head>
+<body>
+    <div id="caja"></div>
+
+    <script>
+        var limite = parseInt(prompt("Introduce el número de filas del rombo:"));
+        var caja = document.getElementById("caja");
+
+        if (!isNaN(limite) && limite >= 1) 
+        {
+
+            for (var i = 0; i < limite; i++) 
+            {
+                var fila = "";
+
+                fila += "&nbsp;".repeat(limite - i - 1);
+
+                if (i == 0) {
+                    fila += "*";
+                } else {
+                    fila += "*";
+                    fila += "&nbsp;".repeat(2 * i - 1);
+                    fila += "*";
+                }
+
+                caja.innerHTML += fila + "<br>";
+            }
+
+
+            for (var i = limite - 2; i >= 0; i--) 
+            {
+                var fila = "";
+
+                fila += "&nbsp;".repeat(limite - i - 1);
+
+                if (i == 0) {
+                    fila += "*";
+                } else {
+                    fila += "*";
+                    fila += "&nbsp;".repeat(2 * i - 1);
+                    fila += "*";
+                }
+
+                caja.innerHTML += fila + "<br>";
+            }
+
+        } else 
+        {
+            alert("Introduce un número entero mayor que 0.");
+        }
+    </script>
+</body>
+</html>

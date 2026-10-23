@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horas hasta la primera evaluación</title>
+</head>
+<body>
+    <p id="resultado"></p>
+    <script>
+        const horario = { 2: 2, 3: 2, 5: 2 }; // martes, miércoles, viernes
+
+        const festivos = [
+            "2026-10-30",
+            "2026-11-02", 
+        ];
+
+        const formato = (f) => `${f.getFullYear()}-${String(f.getMonth() + 1).padStart(2, "0")}-${String(f.getDate()).padStart(2, "0")}`;
+
+        const hoy = new Date();
+        hoy.setHours(0, 0, 0, 0);
+
+        const eval1 = new Date(2026, 11, 2);
+
+        let horas = 0;
+        for (let d = new Date(hoy); d < eval1; d.setDate(d.getDate() + 1)) {
+            if (festivos.includes(formato(d))) continue;
+            horas += horario[d.getDay()] ?? 0;
+        }
+
+        const texto = `Horas de DWECl hasta la primera evaluación: ${horas}`;
+        console.log(texto);
+        document.getElementById("resultado").textContent = texto;
+    </script>
+</body>
+</html>

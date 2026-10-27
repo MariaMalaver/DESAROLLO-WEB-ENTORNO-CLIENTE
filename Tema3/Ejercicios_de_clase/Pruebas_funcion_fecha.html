@@ -4,7 +4,9 @@
         <script>
             setInterval(() => console.log("tic"), 3000);
 
-            const tres = n * 3;
-            console.log(tres);
+            const tres = n => n * 3;
+            const n = 4;
+
+            console.log(`El triple de ${n} es ${tres(n)}`);
         </script>
 </html>

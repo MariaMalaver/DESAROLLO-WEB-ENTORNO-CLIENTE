@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Cookie de idioma</title>
+    </head>
+    <body>
+        <!--
+            Crea una cookie idioma=es que dure 7 días, léela con leerCookie() y después bórrala. Comprueba cada paso en DevTools.
+            Pista: max-age va en segundos: 7 × 24 × 3600.
+        -->
+        <script>
+            /*Leer cookie*/
+            function leerCookie(nombre) 
+            {
+                let cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    let cookie = cookies[i].trim();
+                    if (cookie.startsWith(nombre + '=')) {
+                        return cookie.substring(nombre.length + 1);
+                    }
+                }
+                return null;
+            }
+            /*Crear cookie*/
+            document.cookie = "idioma=es; max-age=604800; path=/";
+            console.log("Cookie creada: " + leerCookie("idioma"));
+    
+            /*Borrar cookie*/
+            document.cookie = "idioma=; max-age=0; path=/";
+            console.log("Cookie borrada: " + leerCookie("idioma"));
+            </script>
+    </body>
+</html>

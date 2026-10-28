@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Tema que se acuerda</title>
+        <style>
+            body.claro  { background: #ffffff; color: #000000; }
+            body.oscuro { background: #222222; color: #ffffff; }
+        </style>
+    </head>
+    <body>
+        <p>Tema actual: <span id="mostrar"></span></p>
+        <button id="tema">Cambiar tema</button>
+
+        <script>
+            const boton = document.getElementById("tema");
+            const mostrar = document.getElementById("mostrar");
+
+            function aplicarTema(valor) 
+            {
+                document.body.className = valor;
+                mostrar.textContent = valor;
+            }
+
+            function cambiarTema() 
+            {
+                const actual = localStorage.getItem("tema") || "claro";
+
+                if (actual === "claro") 
+                {
+                    localStorage.setItem("tema", "oscuro");
+                } else 
+                {
+                    localStorage.setItem("tema", "claro");
+                }
+
+                aplicarTema(localStorage.getItem("tema"));
+                console.log('Se ha cambiado el tema a: ' + localStorage.getItem("tema"));
+            }
+
+            boton.addEventListener("click", cambiarTema);
+
+            aplicarTema(localStorage.getItem("tema") || "claro");
+            console.log('Tema actual: ' + localStorage.getItem("tema"));
+        </script>
+    </body>
+</html>

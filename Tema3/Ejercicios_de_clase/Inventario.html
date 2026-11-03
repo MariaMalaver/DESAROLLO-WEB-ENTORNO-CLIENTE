@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Inventario</title>
+</head>
+<body>
+  <h1>Inventario</h1>
+
+  <h2>Productos con menos de 5 unidades</h2>
+  <ul id="bajo-stock"></ul>
+
+  <h2>Valor total del inventario</h2>
+  <p id="total"></p>
+
+<script>
+  class Producto {
+    constructor(nombre, precio, stock) {
+      this.nombre = nombre;
+      this.precio = precio;
+      this.stock = stock;
+    }
+  }
+
+  const inventario = [
+    new Producto("Teclado", 20, 8),
+    new Producto("Ratón", 12.5, 3),
+    new Producto("Monitor", 150, 4),
+    new Producto("Webcam", 35, 10)
+  ];
+
+  const lista = document.getElementById("bajo-stock");
+  let total = 0; 
+
+  for (let i = 0; i < inventario.length; i++) {
+    const p = inventario[i];
+
+    if (p.stock < 5) {
+      const li = document.createElement("li");
+      li.textContent = p.nombre + ": " + p.stock + " unidades";
+      lista.appendChild(li);
+      console.log("Poco stock:", p.nombre, p.stock);
+    }
+
+    total += p.precio * p.stock;
+  }
+
+  document.getElementById("total").textContent = total.toFixed(2) + " €";
+  console.log("Valor total:", total.toFixed(2) + " €");
+</script>
+</body>
+</html>

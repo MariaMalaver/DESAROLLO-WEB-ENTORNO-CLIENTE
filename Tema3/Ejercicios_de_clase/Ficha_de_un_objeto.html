@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ficha de un libro</title>
+    </head>
+    <body>
+        <h1>Ficha de un libro</h1>
+        <p id="resumen"></p>
+        <ul id="lista"></ul>
+
+        <script>
+        const libro = {
+            titulo: "Dune",
+            autor: "Frank Herbert",
+            paginas: 688,
+            resumen() {
+            return `${this.titulo}, de ${this.autor} (${this.paginas} páginas)`;
+            }
+        };
+
+        document.getElementById("resumen").textContent = libro.resumen();
+
+        const lista = document.getElementById("lista");
+        for (const clave in libro) {
+            const li = document.createElement("li");
+            li.textContent = clave + ": " + libro[clave];
+            lista.appendChild(li);
+        }
+        </script>
+    </body>
+</html>

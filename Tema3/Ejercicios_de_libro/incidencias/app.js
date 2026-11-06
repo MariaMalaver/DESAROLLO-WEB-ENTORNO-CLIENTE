@@ -26,8 +26,8 @@ class Incidencia {
     // TODO RETO 1: si NO está resuelta, añade el botón:
     //   "<button type='button' onclick='resolver(" + this.id + ")'>Resolver</button>"
     
-    // DESDE AQUI
-    html += "<p class='meta'>hace " + this.minutos() + " min</p>";
+    // AQUI
+    html += "<p class='meta'>hace " + this.minutos() + " min</p>"; 
 
     if (!this.resuelta) 
     {

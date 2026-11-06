@@ -19,3 +19,6 @@ button { font: inherit; padding: 8px 16px; border: 0; border-radius: 6px; backgr
 .baja { border-left-color: #6a44c2; }
 .resuelta { border-left-color: #1e5631; background: #eef4ee; }
 .resuelta h3 { text-decoration: line-through; color: #5e6878; }
+
+/* RETO 5 */
+.urgente { outline: 3px solid #b42318; }

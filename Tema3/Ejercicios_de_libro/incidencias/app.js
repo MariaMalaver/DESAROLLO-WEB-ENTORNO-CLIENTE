@@ -34,6 +34,8 @@ class Incidencia {
       html += "<button type='button' onclick='resolver(" + this.id + ")'>Resolver</button>";
     }
     //ASTA AQUI
+    // RETO 4: el botón Eliminar sale en todas las tarjetas
+    html += " <button type='button' onclick='eliminar(" + this.id + ")'>Eliminar</button>";
 
     html += "</article>";
     return html;
@@ -44,6 +46,12 @@ class Incidencia {
   minutos() {
     return Math.floor((Date.now() - this.fecha) / 60000); //CAMBIADO DESDE MATH
   }
+
+  // RETO 5: urgente = prioridad alta, sin resolver y con más de 30 min
+  esUrgente() {
+    return this.prioridad === "alta" && !this.resuelta && this.minutos() > 30;
+  }
+
 }
 
 // =====================================================================
@@ -90,6 +98,19 @@ function pintar() {
   }
   document.getElementById("resumen").textContent = "Total: " + incidencias.length + " · Pendientes: " + pendientes;
 }
+
+// RETO 5: contar las urgentes y mostrarlas en el título de la pestaña
+  let urgentes = 0;
+  for (let i = 0; i < incidencias.length; i++) 
+  {
+    if (incidencias[i].esUrgente()) urgentes++;
+  }
+  if (urgentes > 0) 
+  {
+    document.title = "(" + urgentes + ") Incidencias del aula";
+  } else {
+    document.title = "Incidencias del aula";
+  }
 
 // Muestra un mensaje que desaparece a los 2 segundos (3.2)
 function avisar(texto) {
@@ -139,6 +160,20 @@ function resolver(id)
   pintar();
 }
 
+// RETO 4: elimina la incidencia con ese id, pidiendo confirmación
+function eliminar(id) {
+  if (!confirm("¿Seguro que quieres eliminar esta incidencia?")) {
+    return;                  // si cancelan, no hacemos nada
+  }
+  for (let i = 0; i < incidencias.length; i++) {
+    if (incidencias[i].id === id) {
+      incidencias.splice(i, 1);   // quita 1 elemento en la posición i
+    }
+  }
+  guardar();   // actualizo localStorage para que al recargar siga borrada
+  pintar();    // vuelvo a pintar la lista
+}
+
 // =====================================================================
 // 5. AL ABRIR LA PÁGINA
 // =====================================================================
@@ -164,3 +199,7 @@ setInterval(() => {
 
 cargar();
 pintar();
+
+// RETO 5: repinta cada minuto para que "hace X min" y las urgentes se actualicen solas
+setInterval(pintar, 60000);
+

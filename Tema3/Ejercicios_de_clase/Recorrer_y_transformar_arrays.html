@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Recorrer y transformar arrays</title>
+    </head>
+    <body>
+        <script>
+            const notas = [4, 7.5, 9, 3, 6];
+            notas.forEach((n, i) => console.log(i, n));
+            notas.map(n => n * 10);
+            notas.filter(n => n >= 5);
+            notas.reduce((s, n) => s + n, 0);
+            notas.find(n => n > 8);
+            notas.some(n => n < 5);
+            notas.every(n => n >= 3);
+            [10, 9, 1].sort();
+            [10, 9, 1].sort((a, b) => a - b);
+        </script>
+    </body>
+</html>

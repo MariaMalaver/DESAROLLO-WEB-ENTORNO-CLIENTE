@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda DAW</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header>
+    <h1>🛒 Tienda DAW</h1>
+    <p>Envío gratis a todo el ciclo</p>
+  </header>
+  <main>
+    <section>
+      <h2>Catálogo</h2>
+      <div id="catalogo"></div>
+    </section>
+
+    <aside id="panel-carrito">
+      <h2>Tu carrito</h2>
+      <p id="aviso"></p>
+      <!-- Ejercicio 3: aquí se pinta una .linea por cada línea del carrito -->
+      <div id="carrito-lineas"></div>
+      <!-- Ejercicio 3: unidades, total y (ejercicio 4) descuento -->
+      <div id="carrito-resumen"></div>
+      <div class="codigo">
+        <input type="text" id="codigo" placeholder="Código de descuento">
+        <button type="button" id="aplicar">Aplicar</button>
+      </div>
+      <p><button type="button" class="secundario" id="vaciar">Vaciar carrito</button></p>
+    </aside>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

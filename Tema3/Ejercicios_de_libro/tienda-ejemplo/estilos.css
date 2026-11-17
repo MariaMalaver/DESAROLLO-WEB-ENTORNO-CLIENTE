@@ -1,0 +1,35 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, Arial, sans-serif; background: #f3f6f4; color: #17302a; }
+header { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; background: #17302a; color: #f3f6f4; }
+header h1 { margin: 0; font-size: 1.4rem; }
+header p { margin: 0; color: #f2b84b; font-weight: 600; }
+main { max-width: 1100px; margin: 24px auto; padding: 0 16px; display: grid; grid-template-columns: 2fr 1fr; gap: 24px; align-items: start; }
+h2 { margin: 0 0 12px; }
+
+/* catálogo */
+#catalogo { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+.producto { background: #fff; border: 1px solid #d6e2dc; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 6px; }
+.producto .icono { font-size: 2.4rem; }
+.producto h3 { margin: 0; font-size: 1.05rem; }
+.producto .precio { font-size: 1.2rem; font-weight: 700; color: #1f6f5c; }
+.producto .stock { font-size: .85rem; color: #5b6b66; }
+.producto button { margin-top: auto; }
+
+button { font: inherit; border: 0; border-radius: 8px; padding: 8px 14px; background: #1f6f5c; color: #fff; cursor: pointer; font-weight: 600; }
+button.secundario { background: #e3ece8; color: #17302a; }
+
+/* carrito */
+#panel-carrito { background: #fff; border: 1px solid #d6e2dc; border-radius: 12px; padding: 16px; position: sticky; top: 16px; }
+.linea { display: grid; grid-template-columns: auto 1fr auto auto auto; gap: 8px; align-items: center; padding: 8px 0; border-bottom: 1px solid #e3ece8; }
+.linea .icono { font-size: 1.4rem; }
+.linea .cantidad { color: #5b6b66; }
+.linea .subtotal { font-weight: 700; }
+.linea button { padding: 2px 8px; background: #b42318; }
+.vacio { color: #5b6b66; }
+#carrito-resumen p { margin: 6px 0; display: flex; justify-content: space-between; }
+#carrito-resumen .total { font-size: 1.2rem; font-weight: 700; color: #1f6f5c; border-top: 2px solid #17302a; padding-top: 6px; }
+#carrito-resumen .descuento { color: #b45309; }
+.codigo { display: flex; gap: 8px; margin-top: 12px; }
+.codigo input { flex: 1; font: inherit; padding: 8px; border: 1px solid #c3d3cc; border-radius: 8px; }
+#aviso { min-height: 1.4em; font-weight: 600; color: #b42318; }
+@media (max-width: 800px) { main { grid-template-columns: 1fr; } }

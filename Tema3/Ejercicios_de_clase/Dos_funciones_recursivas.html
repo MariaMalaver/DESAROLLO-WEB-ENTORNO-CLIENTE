@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Recorrer y transformar arrays</title>
+    </head>
+    <body>
+        <!--
+            Dos funciones recursivas
+            sumaDigitos(n) suma las cifras de un
+            número (1234 → 10). potencia(base,
+            exp) calcula la potencia sin
+            usar Math.pow.
+            Pista: n % 10 da la última cifra y
+            Math.floor(n / 10) la quita.
+        -->
+        <script>
+            function sumaDigitos(n) {
+                n = Math.abs(n);
+                if (n < 10) return n;
+                return (n % 10) + sumaDigitos(Math.floor(n / 10));
+            }
+
+            function potencia(base, exp) {
+                if (exp === 0) return 1; // caso base
+                if (exp < 0) return 1 / potencia(base, -exp);
+                return base * potencia(base, exp - 1);
+            }
+
+            console.log(sumaDigitos(1234));
+            console.log(potencia(2, 10));
+            console.log(potencia(2, -2));
+        </script>
+    </body>
+</html>

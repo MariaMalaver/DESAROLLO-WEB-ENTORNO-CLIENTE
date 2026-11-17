@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Capitalizar nombre</title>
+    </head>
+    <body>
+        <!--
+            Función capitalizar(texto) que ponga en
+            mayúscula la primera letra de cada
+            palabra: «ana garcía lópez» → «Ana
+            García López».
+            Pista: split(" "), map, toUpperCase, slice(1)
+            y join(" ")
+        -->
+        <script>
+            function capitalizar(texto) {
+                return texto
+                    .split(" ")
+                    .map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase())
+                    .join(" ");
+            }
+
+            console.log(capitalizar("maria malaver gonzalez"));
+            console.log(capitalizar("DAVID martinez perez"));
+        </script>
+    </body>
+</html>
